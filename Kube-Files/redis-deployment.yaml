@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cicd
+  labels:
+    app: redis-cicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-cicd
+  template:
+    metadata:
+      labels:
+        app: redis-cicd
+    spec:
+      containers:
+        - name: redis-cicd
+          image: redis-cicd
+          imagePullPolicy: Never
+          ports:
+             - containerPort: 6369

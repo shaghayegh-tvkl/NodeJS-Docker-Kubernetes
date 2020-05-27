@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-cicd
+  labels:
+    app: mongo-cicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-cicd
+  template:
+    metadata:
+      labels:
+        app: mongo-cicd
+    spec:
+      containers:
+        - name: mongo-cicd
+          image: mongo-cicd
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 27017

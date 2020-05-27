@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-cicd
+  labels:
+    app: code-cicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-cicd
+  template:
+    metadata:
+      labels:
+        app: code-cicd
+    spec:
+      containers:
+        - name: code-cicd
+          image: code-cicd:latest
+          imagePullPolicy: Never
+          ports:
+             - containerPort: 3000
+          env:
+            - name: MONGO_IP
+              value: mongo-cicd
+
+            - name: Redis_IP
+              value: redis-cicd
